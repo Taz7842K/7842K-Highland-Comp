@@ -29,7 +29,7 @@ void competition_initialize() {}
 //--------------Autonomous---------------------------------------------
 void autonomous()
 {
-
+  f_auto_run();
 }
 //--------------Autonomous---------------------------------------------
 

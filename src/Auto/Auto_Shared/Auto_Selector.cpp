@@ -5,70 +5,75 @@ pros::ADIPotentiometer pot_auto_select('A');
 
 int e_auto_select = pot_auto_select.get_value();
 
-
- std::string f_gui_auto_select(std::string gui_auto_select)
+ std::string f_gui_auto_select_task(std::string gui_auto_select)
 {
-  if (e_auto_select < 4095)
-  {
-    return "0_Skills";
-  }
 
-  else if (e_auto_select < 4095)
+  while(true)
   {
-    return "1_Blue_front";
-  }
 
-  else if (e_auto_select < 4095)
-  {
-    return "2_Blue_Rear";
-  }
+      if (e_auto_select < 4095)
+    {
+      return "0_Skills";
+    }
 
-  else if (e_auto_select < 4095)
-  {
-    return "3_Red_Front";
-  }
+    else if (e_auto_select < 4095)
+    {
+      return "1_Blue_front";
+    }
 
-  else if (e_auto_select < 4095)
-  {
-    return "4_Red_Rear";
-  }
+    else if (e_auto_select < 4095)
+    {
+      return "2_Blue_Rear";
+    }
 
-  else
-  {
-    return 0;
+    else if (e_auto_select < 4095)
+    {
+      return "3_Red_Front";
+    }
+
+    else if (e_auto_select < 4095)
+    {
+      return "4_Red_Rear";
+    }
+
+    else
+    {
+      return 0;
+    }
   }
 }
 
-void f_auto_select(void*)
+void f_auto_run(void*)
 {
- if (e_auto_select < 4095)
- {
-   auto_0();
 
- }
+   if (e_auto_select < 4095)
+   {
+     auto_0();
 
- else if (e_auto_select < 4095)
- {
-   auto_1();
- }
+   }
 
- else if (e_auto_select < 4095)
- {
-   auto_2();
- }
+   else if (e_auto_select < 4095)
+   {
+     auto_1();
+   }
 
- else if (e_auto_select < 4095)
- {
-   auto_3();
- }
+   else if (e_auto_select < 4095)
+   {
+     auto_2();
+   }
 
- else if (e_auto_select < 4095)
- {
-   auto_4();
- }
+   else if (e_auto_select < 4095)
+   {
+     auto_3();
+   }
 
- else if (e_auto_select < 4095)
- {
-   auto_5();
- }
+   else if (e_auto_select < 4095)
+   {
+     auto_4();
+   }
+
+   else if (e_auto_select < 4095)
+   {
+     auto_5();
+   }
 }
