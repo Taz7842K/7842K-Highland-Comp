@@ -10,6 +10,7 @@ extern void driverControlTask(void*);
 
 extern const int puncher;
 
+/*
 extern const int e_frontLeft;
 extern const int e_frontRight;
 extern const int e_rearRight;
@@ -19,3 +20,4 @@ extern pros::Motor m_frontLeft;
 extern pros::Motor m_frontRight;
 extern pros::Motor m_rearRight;
 extern pros::Motor m_rearLeft;
+*/

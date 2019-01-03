@@ -1,10 +1,13 @@
 #include "main.h"
 #include "MainConfig.h"
 
+Motor frontRight(2);
+Motor frontLeft(3);
+Motor rearRight(4);
+Motor rearLeft(5);
 
 
-extern void baseControlTask(void*);
-extern void driverControlTask(void*);
+XDriveModel(, frontLeft, rearRight, rearLeft, 200, 12000);
 
 
 //--------------Initialize--------------------------------------------
