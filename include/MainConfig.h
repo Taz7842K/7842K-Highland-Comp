@@ -1,12 +1,12 @@
 #include "main.h"
 
-
+//extern std::shared_ptr<AbstractMotor> frontRight;
 
 extern pros::Controller HIDMain;
 
 extern void baseControlTask(void*);
 extern void driverControlTask(void*);
-
+extern void autoSelectTask(void*);
 
 extern const int puncher;
 
