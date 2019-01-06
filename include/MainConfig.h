@@ -10,6 +10,7 @@ extern void autoSelectTask(void*);
 
 extern const int puncher;
 
+extern okapi::ChassisControllerPID mecBase;
 /*
 extern const int e_frontLeft;
 extern const int e_frontRight;

@@ -35,13 +35,15 @@ struct flag_object{
   uint16_t y_middle_coord;
 };
 
-flag_object.x_middle_coord = 2;
+flag_object top_flag;
+
+top_flag.x_middle_coord = 2;
 
 void center_puncher(void)
 {
-  if (flag_object.height < 90)
+  if (flag_object. < VISION_FOV_WIDTH/2)
   {
-
+    
   }
 }
 

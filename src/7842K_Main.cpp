@@ -8,10 +8,16 @@ Motor frontLeft(3);
 Motor rearRight(4);
 Motor rearLeft(5);
 
+okapi::XDriveModel mecBase_Model = ChassisModelFactory::create(frontRight, frontLeft, rearRight, rearLeft, 200, 1200);
 
-okapi::ChassisModelFactory XDriveModel create(frontRight, frontLeft, rearRight, rearLeft, 200, 1200);
-
-
+okapi::ChassisControllerPID mecBase = ChassisControllerFactory::create(
+  1,2,3,4,
+  IterativePosPIDController::Gains{0.5, 0, 0}, //distance PID
+  IterativePosPIDController::Gains{0.1, 0.05, 0}, //Angle PID
+  IterativePosPIDController::Gains{0.2, 0, 0}, //turning PID
+  AbstractMotor::gearset::green,
+  {2.75_in, 10.5_in}
+);
 
 
 //--------------Initialize--------------------------------------------
