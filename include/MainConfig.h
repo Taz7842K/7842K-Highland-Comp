@@ -19,3 +19,10 @@ extern pros::Motor m_frontLeft;
 extern pros::Motor m_frontRight;
 extern pros::Motor m_rearRight;
 extern pros::Motor m_rearLeft;
+
+extern pros::Motor m_puncher;
+extern pros::Motor m_intake;
+
+extern pros::ADIUltrasonic s_ultrasonic;
+extern pros::ADIPotentiometer s_puncherPot;
+extern pros::ADIEncoder s_encoder;
