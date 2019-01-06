@@ -17,22 +17,57 @@ void ballshoot()
 
 
 
-  while(s_encoder.get_value()<40.5-(desianglemedium))
+  while(s_encoder.get_value()<40.5-(desianglehigh))
   {
     m_puncher.move(50);
     pros::delay(10);
   }
   m_puncher.move(0);
   pros::delay(10);
+while(s_light.get_value_calibrated()>-100)
+{
   m_intake.move(127);
-  pros::delay(1500);
-  m_intake.move(0);
   m_puncher.move(-127);
-  pros::delay(1000);
+  pros::delay(10);
+}
+  m_intake.move(-127);
+  m_puncher.move(-127);
+  pros::delay(100);
+
+  m_intake.move(0);
+  pros::delay(10);
+
+  m_puncher.move(-127);
+  pros::delay(750);
+
   m_puncher.move(0);
   pros::delay(10);
 
+  while(s_encoder.get_value()<37.5-(desianglemedium))
+  {
+    m_puncher.move(50);
+    pros::delay(10);
+  }
+  m_puncher.move(0);
+  pros::delay(10);
+while(s_light.get_value_calibrated()>-100)
+{
+  m_intake.move(127);
+  m_puncher.move(-127);
+  pros::delay(10);
+}
+m_intake.move(-127);
+m_puncher.move(-127);
+pros::delay(250);
 
+m_intake.move(0);
+pros::delay(10);
+
+m_puncher.move(-127);
+pros::delay(1000);
+
+m_puncher.move(0);
+pros::delay(10);
 }
 
 
@@ -43,6 +78,7 @@ void driverControlTask(void*)
   {
 
     std::cout << "agnle sensor value:" << s_encoder.get_value() << std::endl;
+    std::cout << "Light Sensor:" << s_light.get_value_calibrated() << std::endl;
 
     if (HIDMain.get_digital(DIGITAL_R1))
     {
