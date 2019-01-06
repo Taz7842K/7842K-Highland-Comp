@@ -10,13 +10,13 @@ double Joystickch2;
 double Joystickch1;
 double Joystickch4;
 
-mecBase xArcade(Joystickch2, Joystickch1, Joystickch4);
+//mecBase xArcade(Joystickch2, Joystickch1, Joystickch4);
 
 }
 
 
 
-/*
+
 void setBasePower(int xPower, int yPower, int zPower)
 {
   m_frontLeft.move(yPower-xPower-zPower);
@@ -40,4 +40,3 @@ void baseControlTask(void*)
 
 // remove error your problem
 // telllletype
-*/
