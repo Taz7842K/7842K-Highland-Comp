@@ -13,3 +13,8 @@ pros::Motor m_rearLeft(e_rearLeft, e_rearLeft<0);
 
 pros::Motor m_puncher(4);
 pros::Motor m_Intake(5);
+
+pros::ADIUltrasonic s_ultrasonic(1);
+pros::ADIPotentiometer s_puncherPot(2);
+pros::ADIEncoder s_encoder(9);
+pros::ADILineSensor s_light(4);
