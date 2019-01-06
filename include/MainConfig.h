@@ -26,3 +26,4 @@ extern pros::Motor m_intake;
 extern pros::ADIUltrasonic s_ultrasonic;
 extern pros::ADIPotentiometer s_puncherPot;
 extern pros::ADIEncoder s_encoder;
+extern pros::ADILineSensor s_light;

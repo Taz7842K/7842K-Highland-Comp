@@ -9,11 +9,11 @@ void ballshoot()
 
 
   double distancefromflag = (((s_ultrasonic.get_value()/2.54)/10));
-  double desianglehigh = (atanf(distancefromflag/38.3)*(180/PI));
-  double desianglemedium = (atanf(distancefromflag/24.4)*(180/PI));
+  double desianglehigh = (atanf(38.8/distancefromflag)*(180/PI));
+  double desianglemedium = (atanf(24.4/distancefromflag)*(180/PI));
 
   std::cout << "distance:" << distancefromflag << std::endl;
-  std::cout << "high angle:" << desianglehigh << std::endl;
+  std::cout << "medium angle:" << desianglemedium << std::endl;
 
 
 
@@ -32,6 +32,7 @@ void ballshoot()
   m_puncher.move(0);
   pros::delay(10);
 
+
 }
 
 
@@ -41,7 +42,7 @@ void driverControlTask(void*)
   while(true)
   {
 
-
+    std::cout << "agnle sensor value:" << s_encoder.get_value() << std::endl;
 
     if (HIDMain.get_digital(DIGITAL_R1))
     {
@@ -56,6 +57,25 @@ void driverControlTask(void*)
     {
       m_puncher.move(0);
     }
+
+
+
+
+    if (HIDMain.get_digital(DIGITAL_L1))
+    {
+      m_intake.move(-127);
+    }
+
+    else if (HIDMain.get_digital(DIGITAL_L2))
+    {
+      m_intake.move(127);
+    }
+    else
+    {
+      m_intake.move(0);
+    }
+
+
 
     if(HIDMain.get_digital(DIGITAL_Y))
     {

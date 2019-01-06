@@ -17,3 +17,4 @@ pros::Motor m_intake(20);
 pros::ADIUltrasonic s_ultrasonic (1, 2);
 pros::ADIPotentiometer s_puncherPot(5);
 pros::ADIEncoder s_encoder (3,4);
+pros::ADILineSensor s_light (6);
