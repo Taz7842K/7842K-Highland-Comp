@@ -1,5 +1,5 @@
 #include "main.h"
-
+/*
 typedef struct __attribute__((__packed__)) vision_signature {
   uint8_t id;
   uint8_t _pad[3];
@@ -43,7 +43,7 @@ void center_puncher(void)
 {
   if (flag_object. < VISION_FOV_WIDTH/2)
   {
-    
+
   }
 }
 
@@ -51,3 +51,4 @@ void center_puncher(void)
 pros::Vision main_Vision(2);
 
  main_Vision.clear_led();
+*/
