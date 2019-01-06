@@ -2,7 +2,7 @@
 #include "MainConfig.h"
 
 pros::Controller HIDMain(pros::E_CONTROLLER_MASTER);
-
+/*
 void baseControlTask(void*)
 {
 
@@ -13,7 +13,7 @@ double Joystickch4;
 //mecBase xArcade(Joystickch2, Joystickch1, Joystickch4);
 
 }
-
+*/
 
 
 

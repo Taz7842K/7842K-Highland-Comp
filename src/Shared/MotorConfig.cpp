@@ -11,4 +11,5 @@ pros::Motor m_frontRight(e_frontRight, e_frontRight<0);
 pros::Motor m_rearRight(e_rearRight, e_rearRight<0);
 pros::Motor m_rearLeft(e_rearLeft, e_rearLeft<0);
 
-extern pros::Motor m_puncher();
+pros::Motor m_puncher(4);
+pros::Motor m_Intake(5);

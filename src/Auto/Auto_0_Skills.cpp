@@ -1,5 +1,5 @@
 #include "main.h"
-#include "auto/auto_config.h"
+#include "Auto/Auto_Config.h"
 
 void auto_0(void*)
 {

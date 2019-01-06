@@ -1,7 +1,6 @@
 #include "main.h"
 #include "MainConfig.h"
 
-pros::Motor m_puncher();
 
 void ballshoot()
 {
