@@ -15,6 +15,6 @@ void auto_0(void*)
   mecBase.moveDistance(40_in);
   pros::delay(100);
 
-  mecBase.moveDistance()
+  mecBase.moveDistance(0);
 
 }

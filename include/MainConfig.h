@@ -7,6 +7,7 @@ extern pros::Controller HIDMain;
 extern void baseControlTask(void*);
 extern void driverControlTask(void*);
 extern void autoSelectTask(void*);
+extern void ballshoot(void*);
 
 extern const int puncher;
 
