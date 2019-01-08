@@ -27,9 +27,12 @@ extern pros::Motor m_rearLeft;
 extern pros::Motor m_puncher;
 extern pros::Motor m_intake;
 
-extern pros::ADIUltrasonic s_ultrasonic;
 extern pros::ADIPotentiometer s_puncherPot;
 extern pros::ADIEncoder s_encoder;
 extern pros::ADILineSensor s_light;
 
-extern bool ballshoot_switch;
+extern bool puncherSwitch;
+
+extern double distanceFromFlag1;
+extern double distanceFromFlag2;
+extern double distanceFromFlagCalc;
