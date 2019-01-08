@@ -2,19 +2,17 @@
 #include "MainConfig.h"
 
 pros::Controller HIDMain(pros::E_CONTROLLER_MASTER);
-/*
-void baseControlTask(void*)
-{
 
-double Joystickch2;
-double Joystickch1;
-double Joystickch4;
-
-//mecBase xArcade(Joystickch2, Joystickch1, Joystickch4);
-
-}
-*/
-
+// void baseControlTask(void*)
+// {
+//
+// double Joystickch2;
+// double Joystickch1;
+// double Joystickch4;
+//
+// //mecBase xArcade(Joystickch2, Joystickch1, Joystickch4);
+//
+// }
 
 
 void setBasePower(int xPower, int yPower, int zPower)

@@ -7,7 +7,7 @@ extern pros::Controller HIDMain;
 extern void baseControlTask(void*);
 extern void driverControlTask(void*);
 extern void autoSelectTask(void*);
-extern void ballshoot(void*);
+extern void puncherTasks(void*);
 
 extern const int puncher;
 
@@ -30,8 +30,6 @@ extern pros::Motor m_intake;
 extern pros::ADIPotentiometer s_puncherPot;
 extern pros::ADIEncoder s_encoder;
 extern pros::ADILineSensor s_light;
-
-extern bool puncherSwitch;
 
 extern double distanceFromFlag1;
 extern double distanceFromFlag2;

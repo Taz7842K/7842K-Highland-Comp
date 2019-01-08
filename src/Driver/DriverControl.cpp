@@ -1,5 +1,6 @@
 #include "main.h"
 #include "MainConfig.h"
+#include "Driver/Puncher_States.h"
 
 pros::ADIUltrasonic s_ultrasonic1(11,12); //PLACEHOLDER!!!
 pros::ADIUltrasonic s_ultrasonic2(13,14); //PLACEHOLDER!!!
@@ -9,16 +10,6 @@ double distanceFromFlag2 = 0;
 double distanceFromFlagCalc = 0;
 
 bool puncherSwitch = false;
-
-enum puncher_states
-{
-  doNothing,
-  movetoMidFlag,
-  shootHighFlag,
-  movetoHighFlag,
-  shootMidFlag
-};
-puncher_states stateofPuncher = doNothing;
 
 void calc_FlagDistance(double distanceFromFlag1, double distancefromFlag2)
 {
@@ -39,7 +30,7 @@ void calc_FlagDistance(double distanceFromFlag1, double distancefromFlag2)
 
 }
 
-void ballshoot(void*)
+void puncherTasks(void*)
 {
   while(true)
   {
@@ -59,7 +50,6 @@ void ballshoot(void*)
 
 switch (stateofPuncher)
 {
-
 case doNothing:
 break;
 
@@ -69,84 +59,19 @@ if (puncherSwitch == true)
 }
 
 case movetoHighFlag:
-
-   while(s_encoder.get_value()<40.5-(desianglehigh))
-    {
-      m_puncher.move_velocity(60);
-      pros::delay(10);
-    }
-
-    m_puncher.move(0);
-    pros::delay(10);
-    if (puncherSwitch == true)
-    {
-      stateofPuncher = shootHighFlag;
-    }
+movetoHighFlagFunction();
 break;
 
 case shootHighFlag:
-
-  while(s_light.get_value_calibrated()>-100)
-  {
-    m_intake.move(127);
-    m_puncher.move(-127);
-    pros::delay(10);
-  }
-    m_intake.move(-127);
-    m_puncher.move(-127);
-    pros::delay(100);
-
-    m_intake.move(0);
-    pros::delay(10);
-
-    m_puncher.move(-127);
-    pros::delay(750);
-
-    m_puncher.move(0);
-    pros::delay(10);
-
-    if (puncherSwitch == true)
-    {
-      stateofPuncher = movetoMidFlag;
-    }
+shootHighFlagFunction();
 break;
 
 case movetoMidFlag:
-
-  while(s_encoder.get_value()<37.5-(desianglemedium))
-    {
-      m_puncher.move(50);
-      pros::delay(10);
-    }
-    m_puncher.move(0);
-    pros::delay(10);
-if (puncherSwitch == true)
-{
-  stateofPuncher = shootMidFlag;
-}
+movetoMidFlagFunction();
 break;
 
 case shootMidFlag:
-
-  while(s_light.get_value_calibrated()>-100)
-  {
-    m_intake.move(127);
-    m_puncher.move(-127);
-    pros::delay(10);
-  }
-  m_intake.move(-127);
-  m_puncher.move(-127);
-  pros::delay(250);
-
-  m_intake.move(0);
-  pros::delay(10);
-
-  m_puncher.move(-127);
-  pros::delay(1000);
-
-  m_puncher.move(0);
-  pros::delay(10);
-
+shootMidFlagFunction();
 break;
   }
 }
