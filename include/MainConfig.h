@@ -11,7 +11,7 @@ extern void puncherTasks(void*);
 
 extern const int puncher;
 
-extern okapi::ChassisControllerPID mecBase;
+extern okapi::ChassisControllerIntegrated mecBase;
 
 extern const int e_frontLeft;
 extern const int e_frontRight;
@@ -24,8 +24,8 @@ extern pros::Motor m_rearRight;
 extern pros::Motor m_rearLeft;
 
 
-extern pros::Motor m_puncher;
-extern pros::Motor m_intake;
+extern okapi::Motor m_puncher;
+extern okapi::Motor m_intake;
 
 extern pros::ADIPotentiometer s_puncherPot;
 extern pros::ADIEncoder s_encoder;

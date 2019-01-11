@@ -1,21 +1,18 @@
 #include "main.h"
-#include "Puncher_States"
+#include "Driver/Puncher_States.h"
+#include"MainConfig.h"
+
+//m_puncher.setPosPID(0.2,0,0,0);
 
 void movetoHighFlagFunction()
 {
-  while(s_encoder.get_value()<40.5-(desianglehigh))
-   {
-     m_puncher.move_velocity(60);
+
+     m_puncher.move_relative(desianglehigh * 2.5 - s_encoder.get_value(), 70);              // changes angle to encoder units and subtracts current value
      pros::delay(10);
-   }
 
    m_puncher.move(0);
    pros::delay(10);
-   if (puncherSwitch == true)
-   {
-     stateofPuncher = shootHighFlag;
-   }
-};
+}
 
 void shootHighFlagFunction()
 {
@@ -38,26 +35,19 @@ void shootHighFlagFunction()
     m_puncher.move(0);
     pros::delay(10);
 
-    if (puncherSwitch == true)
-    {
-      stateofPuncher = movetoMidFlag;
-    }
-};
+}
 
 void movetoMidFlagFunction()
 {
   while(s_encoder.get_value()<37.5-(desianglemedium))
     {
-      m_puncher.move(50);
+      m_puncher.move_relative(desianglehigh * 2.5 - s_encoder.get_value(), 70);
       pros::delay(10);
     }
     m_puncher.move(0);
     pros::delay(10);
-if (puncherSwitch == true)
-{
-  stateofPuncher = shootMidFlag;
+
 }
-};
 
 void shootMidFlagFunction()
 {
@@ -79,4 +69,4 @@ void shootMidFlagFunction()
 
   m_puncher.move(0);
   pros::delay(10);
-};
+}

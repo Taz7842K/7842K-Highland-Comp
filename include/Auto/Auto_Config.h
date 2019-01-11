@@ -1,4 +1,6 @@
 #include "main.h"
 #include "MainConfig.h"
 
-extern auto mecBase;
+extern okapi::ChassisControllerIntegrated mecBase;
+
+extern okapi::Motor om_intake;
