@@ -1,64 +1,88 @@
 #include "main.h"
 #include "MainConfig.h"
 
+int master;
+
 const double PI = 3.141592653589793238462643383279502886;
 
 void ballshoot()
 {
+
   s_encoder.reset();
 
+  std::cout << "==================code has reached start==============================================" << master << std::endl;
 
   double distancefromflag = (((s_ultrasonic.get_value()/2.54)/10));
+
+  if (distancefromflag< 20)
+  {
+
+    distancefromflag = 40;
+
+  }
+
   double desianglehigh = (atanf(38.8/distancefromflag)*(180/PI));
   double desianglemedium = (atanf(24.4/distancefromflag)*(180/PI));
 
   std::cout << "distance:" << distancefromflag << std::endl;
   std::cout << "medium angle:" << desianglemedium << std::endl;
+  std::cout << "high angle:" << desianglehigh << std::endl;
+  std::cout << "agnle sensor value:" << s_encoder.get_value() << std::endl;
 
-
-
-  while(s_encoder.get_value()<40.5-(desianglehigh))
+  while(s_encoder.get_value()<35.5-(desianglehigh))
   {
-    m_puncher.move(50);
+    m_puncher.move(100);
     pros::delay(10);
   }
+
+
+  std::cout << "==================code has reached first puncher aim==============================================" << master << std::endl;
+
   m_puncher.move(0);
   pros::delay(10);
-while(s_light.get_value_calibrated()>-100)
+
+while(s_light.get_value_calibrated()>-50)
 {
   m_intake.move(127);
-  m_puncher.move(-127);
   pros::delay(10);
 }
   m_intake.move(-127);
-  m_puncher.move(-127);
-  pros::delay(100);
+  pros::delay(200);
+
+  std::cout << "==================code has reached first ball intook==============================================" << master << std::endl;
 
   m_intake.move(0);
   pros::delay(10);
 
   m_puncher.move(-127);
-  pros::delay(750);
+  pros::delay(1000);
 
   m_puncher.move(0);
-  pros::delay(10);
+  pros::delay(200);
 
-  while(s_encoder.get_value()<37.5-(desianglemedium))
+  while(s_encoder.get_value()<35.5-(desianglemedium))
   {
-    m_puncher.move(50);
+    m_puncher.move(100);
     pros::delay(10);
   }
   m_puncher.move(0);
-  pros::delay(10);
-while(s_light.get_value_calibrated()>-100)
+  pros::delay(100);
+
+  std::cout << "distance:" << distancefromflag << std::endl;
+  std::cout << "medium angle:" << desianglemedium << std::endl;
+  std::cout << "agnle sensor value:" << s_encoder.get_value() << std::endl;
+
+  std::cout << "==================code has reached second puncher aim==============================================" << master << std::endl;
+
+while(s_light.get_value_calibrated()>-50)
 {
   m_intake.move(127);
-  m_puncher.move(-127);
   pros::delay(10);
 }
+std::cout << "==================code has reached second ball intook==============================================" << master << std::endl;
+
 m_intake.move(-127);
-m_puncher.move(-127);
-pros::delay(250);
+pros::delay(200);
 
 m_intake.move(0);
 pros::delay(10);
@@ -68,7 +92,11 @@ pros::delay(1000);
 
 m_puncher.move(0);
 pros::delay(10);
+
+  std::cout << "==================code has reached stop==============================================" << master << std::endl;
+
 }
+
 
 
 void driverControlTask(void*)
@@ -77,8 +105,9 @@ void driverControlTask(void*)
   while(true)
   {
 
-    std::cout << "agnle sensor value:" << s_encoder.get_value() << std::endl;
-    std::cout << "Light Sensor:" << s_light.get_value_calibrated() << std::endl;
+    // std::cout << "agnle sensor value:" << s_encoder.get_value() << std::endl;
+    // std::cout << "Light Sensor:" << s_light.get_value_calibrated() << std::endl;
+
 
     if (HIDMain.get_digital(DIGITAL_R1))
     {
@@ -99,11 +128,13 @@ void driverControlTask(void*)
 
     if (HIDMain.get_digital(DIGITAL_L1))
     {
+      master = 2;
       m_intake.move(-127);
     }
 
     else if (HIDMain.get_digital(DIGITAL_L2))
     {
+      master = 2;
       m_intake.move(127);
     }
     else
