@@ -31,7 +31,7 @@ void ballshoot()
 
   while(s_encoder.get_value()<35.5-(desianglehigh))
   {
-    m_puncher.move(100);
+    m_puncher.move(50);
     pros::delay(10);
   }
 
@@ -57,12 +57,12 @@ while(s_light.get_value_calibrated()>-50)
   m_puncher.move(-127);
   pros::delay(1000);
 
-  m_puncher.move(0);
+  m_puncher.move(50);
   pros::delay(200);
 
   while(s_encoder.get_value()<35.5-(desianglemedium))
   {
-    m_puncher.move(100);
+    m_puncher.move(500);
     pros::delay(10);
   }
   m_puncher.move(0);
