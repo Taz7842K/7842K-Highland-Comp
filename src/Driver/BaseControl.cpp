@@ -11,18 +11,15 @@ okapi::Controller HIDMain(ControllerId::master);
 //   m_rearLeft.move(yPower-xPower+zPower);
 // }
 
-void baseControlTask(void*)
+void baseControlFunction()
 {
 
-  std::cout<<"basedcontroltask is running"<<std::endl;
+  double joystickDeadband = 0;
 
-  double joystickDeadband = 10;
+    std::cout<<"basecontroltask is running"<<std::endl;
 
-  while(true)
-  {
     double Joystickch2_forward = HIDMain.getAnalog(ControllerAnalog::leftX) * 0.75;
     double Joystickch4_turn = HIDMain.getAnalog(ControllerAnalog::rightY);
 
     skidBase.arcade(Joystickch2_forward,Joystickch4_turn, joystickDeadband);
-  }
 }

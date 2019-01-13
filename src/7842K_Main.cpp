@@ -1,6 +1,7 @@
 #include "main.h"
 #include "MainConfig.h"
 
+#include "Auto/Shared_Auto/Auto_Selector.h"
 
 void auto_0();
 // void auto_1();
@@ -23,7 +24,6 @@ okapi::ChassisControllerIntegrated skidBase = ChassisControllerFactory::create(
 //--------------Initialize--------------------------------------------
 void initialize()
 {
-pros::Task BaseControl(baseControlTask, NULL, TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "baseControlTask" );
 pros::Task DriverControl(driverControlTask, NULL, TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "driverControlTask" );
 //pros::Task AutoSelect(autoSelectTask, NULL, TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "autoSelectTask" );
 pros::Task Puncher(puncherTasks, NULL, TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "autoSelectTask" );
@@ -77,7 +77,11 @@ auto_0();
 //-------------opControl-----------------------------------------------
 void opcontrol()
 {
-
+  while(true)
+  {
+    baseControlFunction();
+    pros::delay(20);
+  }
 }
 
 //------------opControl------------------------------------------------

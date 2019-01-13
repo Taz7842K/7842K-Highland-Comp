@@ -67,5 +67,7 @@ void driverControlTask(void*)
       m_puncher.move(0);
       m_intake.move(0);
     }
+
+    pros::delay(10);
   }
 }

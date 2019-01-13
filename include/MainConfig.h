@@ -4,17 +4,17 @@
 
 extern okapi::Controller HIDMain;
 
-extern void baseControlTask(void*);
-extern void driverControlTask(void*);
-extern void autoSelectTask(void*);
-extern void puncherTasks(void*);
+void baseControlFunction();
+void driverControlTask(void*);
+void autoSelectTask(void*);
+void puncherTasks(void*);
 
-extern void auto_0();
-extern void auto_1();
-extern void auto_2();
-extern void auto_3();
-extern void auto_4();
-extern void auto_5();
+void auto_0();
+void auto_1();
+void auto_2();
+void auto_3();
+void auto_4();
+void auto_5();
 
 extern okapi::ChassisControllerIntegrated skidBase;
 

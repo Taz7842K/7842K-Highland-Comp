@@ -16,5 +16,21 @@ void puncherTasks(void*)
     double desianglehigh = (atanf(38.8/distancefromflag)*(180/PI));
     double desianglemedium = (atanf(24.4/distancefromflag)*(180/PI));  //outputs in degrees and subtracts starting angle
 
+    if(HIDMain.getDigital(ControllerDigital::left))
+    {
+      std::cout<<"diastance =" <<distancefromflag<<std::endl;
+    }
+
+    if(HIDMain.getDigital(ControllerDigital::up))
+    {
+      std::cout<<"anglehigh =" <<desianglehigh<<std::endl;
+    }
+
+    if(HIDMain.getDigital(ControllerDigital::up))
+    {
+      std::cout<<"anglemedium =" <<desianglemedium<<std::endl;
+    }
+
+    pros::delay(10);
   }
 }
