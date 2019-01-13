@@ -11,7 +11,7 @@ void auto_0();
 // void auto_5();
 
 okapi::ChassisControllerIntegrated skidBase = ChassisControllerFactory::create(
-  {e_frontLeft,e_rearLeft} ,{e_frontRight,e_rearRight},
+  {-e_frontLeft,-e_rearLeft} ,{e_frontRight,e_rearRight},
   //IterativePosPIDController::Gains{0.0, 0, 0}, //distance PID
   //IterativePosPIDController::Gains{0.0, 0.00, 0}, //Angle PID
   //IterativePosPIDController::Gains{0.0, 0, 0}, //turning PID

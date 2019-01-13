@@ -1,8 +1,8 @@
 #include "main.h"
 #include "MainConfig.h"
 
-const int e_frontLeft(-17);
-const int e_rearLeft(-1);
+const int e_frontLeft(17);
+const int e_rearLeft(1);
 const int e_frontRight(11);
 const int e_rearRight(18);
 
