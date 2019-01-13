@@ -18,8 +18,8 @@ void baseControlFunction()
 
     std::cout<<"basecontroltask is running"<<std::endl;
 
-    double Joystickch2_forward = HIDMain.getAnalog(ControllerAnalog::leftX) * 0.75;
-    double Joystickch4_turn = HIDMain.getAnalog(ControllerAnalog::rightY);
+    double Joystickch2_forward = HIDMain.getAnalog(ControllerAnalog::rightY) * -1.0;
+    double Joystickch4_turn = (HIDMain.getAnalog(ControllerAnalog::leftX)/2);
 
     skidBase.arcade(Joystickch2_forward,Joystickch4_turn, joystickDeadband);
 }
