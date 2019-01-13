@@ -2,38 +2,53 @@
 #include "Auto/Auto_Config.h"
 #include "Driver/Puncher_States.h"
 
-void auto_0(void*)
+void auto_0()
 {
 
-  puncherSwitch = true;
-
-  mecBase.setMaxVelocity(200);
+  skidBase.setMaxVelocity(200);
   pros::delay(100);
 
-  om_intake.move(127);
+  m_intake.moveVelocity(200);
 
-  mecBase.moveDistance(40_in);
+  skidBase.moveDistance(40_in);
   pros::delay(500);               //pause to intake ball
 
-  om_intake.move(0);
+  m_intake.move(0);
 
-  mecBase.moveDistance(-39_in);
+  skidBase.moveDistance(-39_in);
   pros::delay(100);
 
-  mecBase.turnAngle(90_deg);
+  skidBase.turnAngle(90_deg);
   pros::delay(100);
 
-  mecBase.moveDistance(18_in);
+  skidBase.moveDistance(18_in);
   pros::delay(100);
 
   movetoHighFlagFunction();
-  shootHighFlagFunction();
+  shootFlagFunction();
   movetoMidFlagFunction();
-  shootMidFlagFunction();
+  shootFlagFunction();
 
-  mecBase.moveDistance(22_in);
+  while(distanceFromFlag1 > 100)
+  {
+  skidBase.moveDistance(.1_in);
+  }
 
-  mecBase.moveDistance(-50);
+  skidBase.moveDistance(-50_in);
+  pros::delay(100);
 
+  skidBase.turnAngle(90_deg);
+  pros::delay(100);
 
+  skidBase.moveDistance(-7_in);                   //moves backward to center against wall
+  pros::delay(100);
+
+  m_intake.moveVelocity(200);
+
+  skidBase.moveDistance(42_in);
+  pros::delay(100);
+
+  m_intake.moveVelocity(0);
+
+  skidBase.moveDistance(0_in);
 }

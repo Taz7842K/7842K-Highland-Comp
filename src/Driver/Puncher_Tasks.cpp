@@ -1,72 +1,20 @@
 #include "main.h"
+#include "MainConfig.h"
 #include "Driver/Puncher_States.h"
-#include"MainConfig.h"
 
-//m_puncher.setPosPID(0.2,0,0,0);
 
-void movetoHighFlagFunction()
+
+
+void puncherTasks(void*)
 {
-
-     m_puncher.move_relative(desianglehigh * 2.5 - s_encoder.get_value(), 70);              // changes angle to encoder units and subtracts current value
-     pros::delay(10);
-
-   m_puncher.move(0);
-   pros::delay(10);
-}
-
-void shootHighFlagFunction()
-{
-  while(s_light.get_value_calibrated()>-100)
+  while(true)
   {
-    m_intake.move(127);
-    m_puncher.move(-127);
-    pros::delay(10);
+    double distanceFromFlag1 = s_ultrasonic1.get_value();
+    double distanceFromFlag2 = s_ultrasonic2.get_value();
+
+    double distancefromflag = (((distanceFromFlag1/2.54)/10 + 6)); //outputs in inches and adds distance from sensor to pivot point
+    double desianglehigh = (atanf(38.8/distancefromflag)*(180/PI));
+    double desianglemedium = (atanf(24.4/distancefromflag)*(180/PI));  //outputs in degrees and subtracts starting angle
+
   }
-    m_intake.move(-127);
-    m_puncher.move(-127);
-    pros::delay(100);
-
-    m_intake.move(0);
-    pros::delay(10);
-
-    m_puncher.move(-127);
-    pros::delay(750);
-
-    m_puncher.move(0);
-    pros::delay(10);
-
-}
-
-void movetoMidFlagFunction()
-{
-  while(s_encoder.get_value()<37.5-(desianglemedium))
-    {
-      m_puncher.move_relative(desianglehigh * 2.5 - s_encoder.get_value(), 70);
-      pros::delay(10);
-    }
-    m_puncher.move(0);
-    pros::delay(10);
-
-}
-
-void shootMidFlagFunction()
-{
-  while(s_light.get_value_calibrated()>-100)
-  {
-    m_intake.move(127);
-    m_puncher.move(-127);
-    pros::delay(10);
-  }
-  m_intake.move(-127);
-  m_puncher.move(-127);
-  pros::delay(250);
-
-  m_intake.move(0);
-  pros::delay(10);
-
-  m_puncher.move(-127);
-  pros::delay(1000);
-
-  m_puncher.move(0);
-  pros::delay(10);
 }

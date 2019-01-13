@@ -2,103 +2,13 @@
 #include "MainConfig.h"
 #include "Driver/Puncher_States.h"
 
-pros::ADIUltrasonic s_ultrasonic1(11,12); //PLACEHOLDER!!!
-pros::ADIUltrasonic s_ultrasonic2(13,14); //PLACEHOLDER!!!
-
 double distanceFromFlag1 = 0;
 double distanceFromFlag2 = 0;
 double distanceFromFlagCalc = 0;
 
-bool puncherSwitch = false;
-
-puncher_states stateofPuncher;
-
 double distanceFromFlag = 0;
 double desianglehigh = 0;
 double desianglemedium = 0;
-
-void calc_FlagDistance(double distanceFromFlag1, double distancefromFlag2)
-{
-  if (distanceFromFlag1 < 5)
-  {
-    distanceFromFlagCalc = distanceFromFlag2;
-  }
-
-  if (distanceFromFlag2 < 5)
-  {
-    distanceFromFlagCalc = distanceFromFlag1;
-  }
-
-  else
-  {
-    distanceFromFlagCalc = (distanceFromFlag1 + distanceFromFlag2) /2;
-  }
-
-}
-
-void puncherTasks(void*)
-{
-  while(true)
-  {
-    double distanceFromFlag1 = s_ultrasonic1.get_value();
-    double distanceFromFlag2 = s_ultrasonic2.get_value();
-
-    calc_FlagDistance(distanceFromFlag1, distanceFromFlag2);
-
-    double distancefromflag = (((distanceFromFlagCalc/2.54)/10));
-    double desianglehigh = (atanf(38.8/distancefromflag)*(180/PI));
-    double desianglemedium = (atanf(24.4/distancefromflag)*(180/PI));
-
-    std::cout << "distance:" << distancefromflag << std::endl;
-    std::cout << "medium angle:" << desianglemedium << std::endl;
-
-    switch (stateofPuncher)
-    {
-      case doNothing:
-      if (puncherSwitch == true)
-      {
-        stateofPuncher = movetoHighFlag;
-      }
-      break;
-
-
-      case movetoHighFlag:
-
-      movetoHighFlagFunction();
-
-      if (puncherSwitch == true)
-      {
-        stateofPuncher = shootHighFlag;
-      }
-      break;
-
-      case shootHighFlag:
-
-      shootHighFlagFunction();
-
-      if (puncherSwitch == true)
-      {
-        stateofPuncher = movetoMidFlag;
-      }
-      break;
-
-      case movetoMidFlag:
-
-      movetoMidFlagFunction();
-
-      if (puncherSwitch == true)
-      {
-        stateofPuncher = shootMidFlag;
-      }
-      break;
-
-      case shootMidFlag:
-      shootMidFlagFunction();
-      break;
-    }
-  }
-}
-
 
 void driverControlTask(void*)
 {
@@ -106,28 +16,56 @@ void driverControlTask(void*)
   while(true)
   {
 
-    if (HIDMain.get_digital(DIGITAL_R1))
+//------------------manual controls------------------------------
+    if (HIDMain.getDigital(ControllerDigital::R1))
     {
+      // if (puncherPIDController.isDisabled() = false)
+      // {
+      // puncherPIDController.flipDisable();
+      // m_puncher.move(-127);
+      // }
       m_puncher.move(-127);
     }
 
-    else if (HIDMain.get_digital(DIGITAL_R2))
+    else if (HIDMain.getDigital(ControllerDigital::R2))
     {
-      m_puncher.move(38);
+      // if (puncherPIDController.isDisabled() = false)
+      // {
+      // puncherPIDController.stop();
+      // }
+      m_puncher.move(-127);
     }
+
+    if (HIDMain.getDigital(ControllerDigital::L1))
+    {
+      m_intake.move(127);
+    }
+
+    if (HIDMain.getDigital(ControllerDigital::L2))
+    {
+      m_intake.move(-127);
+    }
+//------------------manual controls------------------------------
+
+    if (HIDMain.getDigital(ControllerDigital::A))
+    {
+      shootFlagFunction();
+    }
+
+    else if (HIDMain.getDigital(ControllerDigital::X))
+    {
+      movetoMidFlagFunction();
+    }
+
+    else if (HIDMain.getDigital(ControllerDigital::Y))
+    {
+      movetoMidFlagFunction();
+    }
+
     else
     {
       m_puncher.move(0);
-    }
-
-    if (HIDMain.get_digital(DIGITAL_Y))
-    {
-      puncherSwitch = true;
-    }
-
-    if (HIDMain.get_digital(DIGITAL_X))
-    {
-      puncherSwitch = false;
+      m_intake.move(0);
     }
   }
 }

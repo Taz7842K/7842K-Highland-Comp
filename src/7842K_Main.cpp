@@ -1,17 +1,16 @@
 #include "main.h"
 #include "MainConfig.h"
 
-#include "Auto/Shared_Auto/Auto_Selector.h"
 
-// void auto_0();
+void auto_0();
 // void auto_1();
 // void auto_2();
 // void auto_3();
 // void auto_4();
 // void auto_5();
 
-okapi::ChassisControllerIntegrated mecBase = ChassisControllerFactory::create(
-  1,2,3,4,
+okapi::ChassisControllerIntegrated skidBase = ChassisControllerFactory::create(
+  {e_frontLeft,e_rearLeft} ,{e_frontRight,e_rearRight},
   //IterativePosPIDController::Gains{0.0, 0, 0}, //distance PID
   //IterativePosPIDController::Gains{0.0, 0.00, 0}, //Angle PID
   //IterativePosPIDController::Gains{0.0, 0, 0}, //turning PID
@@ -46,8 +45,11 @@ void competition_initialize() {}
 
 //--------------Autonomous---------------------------------------------
 
-// void autonomous()
-// {
+ void autonomous()
+ {
+
+auto_0();
+
 //  if (int_auto_select == 1)
 //  {
 //    auto_1();
@@ -68,7 +70,7 @@ void competition_initialize() {}
 //  {
 //    auto_5();
 //  }
-// }
+ }
 
 //--------------Autonomous---------------------------------------------
 
