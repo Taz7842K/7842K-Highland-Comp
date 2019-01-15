@@ -1,10 +1,10 @@
 #include "main.h"
 #include "MainConfig.h"
 
-const int e_frontLeft(-17);
-const int e_rearLeft(-1);
-const int e_frontRight(11);
-const int e_rearRight(18);
+const int e_frontLeft(17);
+const int e_rearLeft(1);
+const int e_frontRight(-11);
+const int e_rearRight(-18);
 
 pros::Motor m_frontLeft(abs(e_frontLeft), e_frontLeft<0);
 pros::Motor m_frontRight(abs(e_frontRight), e_frontRight<0);

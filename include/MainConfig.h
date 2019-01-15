@@ -1,12 +1,11 @@
 #include "main.h"
 
-
-
 extern pros::Controller HIDMain;
 
-extern void baseControlTask(void*);
-extern void driverControlTask(void*);
+extern void baseControlTask();
+extern void driverControlTask();
 
+extern okapi::ChassisControllerIntegrated skidBase;
 
 extern const int puncher;
 
@@ -27,3 +26,10 @@ extern pros::ADIUltrasonic s_ultrasonic;
 extern pros::ADIPotentiometer s_puncherPot;
 extern pros::ADIEncoder s_encoder;
 extern pros::ADILineSensor s_light;
+
+void auto_0();
+void auto_1();
+void auto_2();
+void auto_3();
+void auto_4();
+void auto_5();

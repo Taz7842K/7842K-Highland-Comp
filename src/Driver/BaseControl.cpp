@@ -12,15 +12,9 @@ void setBasePower(int xPower, int yPower, int zPower)
   m_rearLeft.move(yPower-xPower+zPower);
 }
 
-void baseControlTask(void*)
+void baseControlTask()
 {
-
-  while(true)
-  {
-
     setBasePower(HIDMain.get_analog(ANALOG_LEFT_X), -HIDMain.get_analog(ANALOG_RIGHT_Y), HIDMain.get_analog(ANALOG_RIGHT_X));
-    pros::delay(20);
-  }
 }
 
 // remove error your problem
