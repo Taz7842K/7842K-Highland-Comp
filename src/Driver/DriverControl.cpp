@@ -3,19 +3,25 @@
 
 int master;
 
+bool intakeSwitch = false;
+
 const double _pi = 3.141592653589793238462643383279502886;
 
-void ballshoot()
+double distancefromflag;
+double desianglehigh;
+double desianglemedium;
+
+void movetoMidFlag()
 {
 
   s_encoder.reset();
 
   std::cout << "==================code has reached start==============================================" << master << std::endl;
 
-  double distancefromflag = (((s_ultrasonic.get_value()/2.54)/10));
+  distancefromflag = (((calcFlagDistance()/2.54)/10 -10));
 
-  double desianglehigh = (atanf(38.8/distancefromflag)*(180/_pi));
-  double desianglemedium = (atanf(24.4/distancefromflag)*(180/_pi));
+  desianglehigh = (atanf(38.8/distancefromflag)*(180/_pi));
+  desianglemedium = (atanf(24.4/distancefromflag)*(180/_pi));
 
   std::cout << "distance:" << distancefromflag << std::endl;
   std::cout << "medium angle:" << desianglemedium << std::endl;
@@ -101,30 +107,62 @@ void driverControlTask()
   {
     m_puncher.move(50);
   }
-  else
-  {
-    m_puncher.move(0);
-  }
 
-  if (HIDMain.get_digital(DIGITAL_L1))
-  {
-    master = 2;
-    m_intake.move(-127);
-  }
-
-  else if (HIDMain.get_digital(DIGITAL_L2))
-  {
-    master = 2;
-    m_intake.move(127);
-  }
   else
   {
     m_intake.move(0);
+    m_puncher.move(0);
   }
 
   if(HIDMain.get_digital(DIGITAL_Y))
   {
-    ballshoot();
+  //  ballshoot();
   }
 
+}
+
+void intakeTask()
+{
+  if (HIDMain.get_digital(DIGITAL_R1))                            //intake
+  {
+    if ((intakeSwitch = false))
+    {
+      m_intake.move(127);
+      pros::delay(75);
+    }
+
+    if (s_intakeLight.get_value_calibrated() < -4)
+    {
+      m_intake.move(0);
+      intakeSwitch = true;
+    }
+  }
+
+  if (HIDMain.get_digital(DIGITAL_R2))
+  {
+    m_intake.move(-127);
+  }
+
+  else
+  {
+    intakeSwitch = false;
+  }
+
+}
+
+double calcFlagDistance()
+{
+  if (s_ultrasonic1.get_value() < 5)
+  {
+    return s_ultrasonic2.get_value();
+  }
+
+  if (s_ultrasonic2.get_value() < 5)
+  {
+    return s_ultrasonic1.get_value();
+  }
+  else
+  {
+    return (s_ultrasonic1.get_value() + s_ultrasonic2.get_value()) /2;
+  }
 }

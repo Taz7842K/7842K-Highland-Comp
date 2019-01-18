@@ -2,7 +2,7 @@
 #include "MainConfig.h"
 #include "Auto/AutoConfig.h"
 
-void auto_1()
+void auto_3()
 {
   skidBase.setMaxVelocity(movMaxVel);
   pros::delay(200);
@@ -20,7 +20,7 @@ void auto_1()
   skidBase.moveDistance(-39_in);
   pros::delay(movDel);
 
-  skidBase.turnAngle(90_deg);
+  skidBase.turnAngle(-90_deg);
   pros::delay(movDel);
 
   skidBase.moveDistance(10_in);
@@ -34,7 +34,7 @@ void auto_1()
 
   skidBase.setMaxVelocity(100);
 
-  skidBase.turnAngle(-10_deg);
+  skidBase.turnAngle(10_deg);
   pros::delay(movDel);
 
   m_intake.move_relative(1800, 200);
@@ -42,7 +42,7 @@ void auto_1()
   m_puncher.move_relative(-2700, 200);
   pros::delay(500);
 
-  skidBase.turnAngle(10_deg);
+  skidBase.turnAngle(-10_deg);
   pros::delay(movDel);
 
   skidBase.moveDistance(22_in);

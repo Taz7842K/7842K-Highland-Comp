@@ -2,8 +2,9 @@
 
 extern pros::Controller HIDMain;
 
-extern void baseControlTask();
-extern void driverControlTask();
+void baseControlTask();
+void driverControlTask();
+double calcFlagDistance();
 
 extern okapi::ChassisControllerIntegrated skidBase;
 
@@ -22,10 +23,14 @@ extern pros::Motor m_rearLeft;
 extern pros::Motor m_puncher;
 extern pros::Motor m_intake;
 
-extern pros::ADIUltrasonic s_ultrasonic;
+extern pros::ADIUltrasonic s_ultrasonic1;
+extern pros::ADIUltrasonic s_ultrasonic2;
+
 extern pros::ADIPotentiometer s_puncherPot;
 extern pros::ADIEncoder s_encoder;
+
 extern pros::ADILineSensor s_light;
+extern pros::ADILineSensor s_intakeLight;
 
 void auto_0();
 void auto_1();
@@ -33,3 +38,7 @@ void auto_2();
 void auto_3();
 void auto_4();
 void auto_5();
+
+extern double desianglehigh;
+extern double desianglemedium;
+extern double distancefromflag;
