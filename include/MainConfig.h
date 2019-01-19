@@ -22,8 +22,10 @@ extern pros::Motor m_rearLeft;
 
 extern pros::Motor m_puncher;
 extern pros::Motor m_intake;
+extern pros::Motor lift;
 
 extern pros::ADIUltrasonic s_ultrasonic;
 extern pros::ADIPotentiometer s_puncherPot;
 extern pros::ADIEncoder s_encoder;
 extern pros::ADILineSensor s_light;
+extern pros::Motor m_aim;
