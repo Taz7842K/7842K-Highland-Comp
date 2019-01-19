@@ -14,7 +14,8 @@ void initialize()
 {
   pros::delay(500);
   s_intakeLight.calibrate();
-  s_light.calibrate();                    //calibrates while BALL IS IN THE PUNCHER
+  s_light.calibrate();
+  m_puncherAim.tare_position();                //calibrates while BALL IS IN THE PUNCHER
   pros::delay(500);
 }
 
@@ -50,19 +51,18 @@ void opcontrol()
   std::cout << "distance calculated: " << distancefromflag << std::endl;
   std::cout << "medium angle :" << desianglemedium << std::endl;
   std::cout << "high angle: " << desianglehigh << std::endl;
-  std::cout << "angle sensor value: " << s_encoder.get_value() << std::endl;
+  std::cout << "angle sensor value: " << enc_puncher << std::endl;
 
   std::cout << "lightvalue = " << s_light.get_value_calibrated() << std::endl;
+  std::cout << "intakelightvalue = " << s_intakeLight.get_value_calibrated() << std::endl;
 
-  pros::delay(200);
+    calcFlagDistance();
+    calcAngle();
+    baseControlTask();
+    intakeTask();
+    driverControlTask();
+
+    pros::delay(70);
 }
 }
-//   while(true)
-//   {
-//     baseControlTask();
-//     driverControlTask();
-//
-//     pros::delay(20);
-//   }
-// }
 //------------opControl------------------------------------------------

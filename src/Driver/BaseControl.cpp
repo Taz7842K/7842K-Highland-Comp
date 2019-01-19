@@ -14,7 +14,7 @@ void setBasePower(int xPower, int yPower, int zPower)
 
 void baseControlTask()
 {
-    setBasePower(HIDMain.get_analog(ANALOG_LEFT_X), -HIDMain.get_analog(ANALOG_RIGHT_Y), HIDMain.get_analog(ANALOG_RIGHT_X));
+    setBasePower(-HIDMain.get_analog(ANALOG_LEFT_X), HIDMain.get_analog(ANALOG_RIGHT_Y), HIDMain.get_analog(ANALOG_RIGHT_X));
 }
 
 // remove error your problem

@@ -3,6 +3,8 @@
 
 int master;
 
+double puncherAngleRange = 39;
+
 bool intakeSwitch = false;
 
 const double _pi = 3.141592653589793238462643383279502886;
@@ -11,14 +13,11 @@ double distancefromflag;
 double desianglehigh;
 double desianglemedium;
 
-void movetoMidFlag()
+void calcAngle()
 {
-
-  s_encoder.reset();
-
   std::cout << "==================code has reached start==============================================" << master << std::endl;
 
-  distancefromflag = (((calcFlagDistance()/2.54)/10 -10));
+  distancefromflag = (((calcFlagDistance()/2.54)/10)-10);
 
   desianglehigh = (atanf(38.8/distancefromflag)*(180/_pi));
   desianglemedium = (atanf(24.4/distancefromflag)*(180/_pi));
@@ -26,126 +25,114 @@ void movetoMidFlag()
   std::cout << "distance:" << distancefromflag << std::endl;
   std::cout << "medium angle:" << desianglemedium << std::endl;
   std::cout << "high angle:" << desianglehigh << std::endl;
-  std::cout << "agnle sensor value:" << s_encoder.get_value() << std::endl;
+  std::cout << "agnle sensor value:" << enc_puncher << std::endl;
 
-  while(s_encoder.get_value()<35.5-(desianglehigh))
-  {
-    m_puncher.move(50);
-    pros::delay(10);
-  }
-
-
-  std::cout << "==================code has reached first puncher aim==============================================" << master << std::endl;
-
-  m_puncher.move(0);
-  pros::delay(10);
-
-  while(s_light.get_value_calibrated()>-50)
-  {
-    m_intake.move(127);
-    pros::delay(10);
-  }
-  m_intake.move(-127);
-  pros::delay(200);
-
-  std::cout << "==================code has reached first ball intook==============================================" << master << std::endl;
-
-  m_intake.move(0);
-  pros::delay(10);
-
-  m_puncher.move(-127);
-  pros::delay(1000);
-
-  m_puncher.move(50);
-  pros::delay(200);
-
-  while(s_encoder.get_value()<35.5-(desianglemedium))
-  {
-    m_puncher.move(500);
-    pros::delay(10);
-  }
-  m_puncher.move(0);
-  pros::delay(100);
-
-
-
-  std::cout << "==================code has reached second puncher aim==============================================" << master << std::endl;
-
-  while(s_light.get_value_calibrated()>-50)
-  {
-    m_intake.move(127);
-    pros::delay(10);
-  }
-  std::cout << "==================code has reached second ball intook==============================================" << master << std::endl;
-
-  m_intake.move(-127);
-  pros::delay(200);
-
-  m_intake.move(0);
-  pros::delay(10);
-
-  m_puncher.move(-127);
-  pros::delay(1000);
-
-  m_puncher.move(0);
-  pros::delay(10);
-
-  std::cout << "==================code has reached stop==============================================" << master << std::endl;
-
+  enc_puncher = ((m_puncherAim.get_position())*900/360);
 }
 
+  void movetoHighFlagFunction()
+  {
+
+    // if(desianglehigh > puncherAngleRange)
+    // {
+    //   // HIDMain.rumble(. .);
+    // }
+    // else if (desianglehigh < puncherAngleRange)
+    // {
+    //   m_puncherAim.move(((puncherAngleRange-desianglehigh)-enc_puncher)*10);
+    // }
+     m_puncherAim.move(((puncherAngleRange-desianglehigh)-enc_puncher)*0.01);
+  }
+
+  void movetoMidFlagFunction()
+  {
+
+    if(desianglemedium > puncherAngleRange)
+    {
+      // HIDMain.rumble(. .);
+    }
+    else if (desianglemedium < puncherAngleRange)
+    {
+      if(desianglemedium < enc_puncher)
+      {
+        while(enc_puncher > 5)
+        {
+          m_puncherAim.move(-100);
+        }
+        m_puncherAim.move(0);
+      }
+
+      else if(desianglemedium > enc_puncher)
+      {
+        m_puncherAim.move_relative(puncherAngleRange - (desianglehigh - enc_puncher), 80);
+      }
+    }
+  }
+
+  void shootFlagFunction()
+  {
+
+      m_puncher.move(-127);
+
+
+  }
 
 void driverControlTask()
 {
 
   if (HIDMain.get_digital(DIGITAL_R1))
   {
-    m_puncher.move(-127);
+    m_puncherAim.move(-60);
   }
 
   else if (HIDMain.get_digital(DIGITAL_R2))
   {
-    m_puncher.move(50);
+    m_puncherAim.move(60);
+  }
+
+  else if(HIDMain.get_digital(DIGITAL_X))
+  {
+    movetoHighFlagFunction();
+  }
+
+  else if(HIDMain.get_digital(DIGITAL_Y))
+  {
+    movetoMidFlagFunction();
+  }
+
+  else if(HIDMain.get_digital(DIGITAL_A))
+  {
+    shootFlagFunction();
   }
 
   else
   {
-    m_intake.move(0);
     m_puncher.move(0);
+    m_puncherAim.move(0);
   }
 
-  if(HIDMain.get_digital(DIGITAL_Y))
-  {
-  //  ballshoot();
-  }
+  // if(HIDMain.get_digital(DIGITAL_Y))
+  // {
+  // //  ballshoot();
+  // }
 
 }
 
 void intakeTask()
 {
-  if (HIDMain.get_digital(DIGITAL_R1))                            //intake
+  if (HIDMain.get_digital(DIGITAL_L1))                            //intake
   {
-    if ((intakeSwitch = false))
-    {
       m_intake.move(127);
-      pros::delay(75);
-    }
-
-    if (s_intakeLight.get_value_calibrated() < -4)
-    {
-      m_intake.move(0);
-      intakeSwitch = true;
-    }
   }
 
-  if (HIDMain.get_digital(DIGITAL_R2))
+  else if (HIDMain.get_digital(DIGITAL_L2))
   {
     m_intake.move(-127);
   }
 
   else
   {
-    intakeSwitch = false;
+    m_intake.move(0);
   }
 
 }

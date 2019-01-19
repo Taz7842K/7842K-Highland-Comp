@@ -5,10 +5,18 @@ extern pros::Controller HIDMain;
 void baseControlTask();
 void driverControlTask();
 double calcFlagDistance();
+void calcAngle();
+void intakeTask();
+
+void movetoHighFlagFunction();
+void movetoMidFlagfunction();
+void shootFlagFunction();
 
 extern okapi::ChassisControllerIntegrated skidBase;
 
 extern const int puncher;
+
+extern double enc_puncher;
 
 extern const int e_frontLeft;
 extern const int e_frontRight;
@@ -21,6 +29,8 @@ extern pros::Motor m_rearRight;
 extern pros::Motor m_rearLeft;
 
 extern pros::Motor m_puncher;
+extern pros::Motor m_puncherAim;
+
 extern pros::Motor m_intake;
 
 extern pros::ADIUltrasonic s_ultrasonic1;

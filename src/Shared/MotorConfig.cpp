@@ -12,13 +12,15 @@ pros::Motor m_rearRight(abs(e_rearRight), e_rearRight<0);
 pros::Motor m_rearLeft(abs(e_rearLeft), e_rearLeft<0);
 
 pros::Motor m_puncher(14);
+pros::Motor m_puncherAim(15);
+
 pros::Motor m_intake(20);
 
 pros::ADIUltrasonic s_ultrasonic1 ('A', 'B');
 pros::ADIUltrasonic s_ultrasonic2 ('G', 'H');
 
 pros::ADIPotentiometer s_puncherPot(5);
-pros::ADIEncoder s_encoder (3,4);
+
 pros::ADILineSensor s_light (6);
 
 pros::ADILineSensor s_intakeLight ('E');
@@ -26,6 +28,8 @@ pros::ADILineSensor s_intakeLight ('E');
 double movDel = 125;
 
 double movMaxVel = 100;
+
+double enc_puncher;
 
 
 okapi::ChassisControllerIntegrated skidBase = ChassisControllerFactory::create(
