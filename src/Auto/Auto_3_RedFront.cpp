@@ -10,39 +10,52 @@ void auto_3()
   m_intake.move(127);
 
   skidBase.moveDistance(40_in);
-  pros::delay(500);               //pause to intake ball
+  pros::delay(700);               //pause to intake ball
 
-  while(s_intakeLight.get_value_calibrated() > -4){pros::delay(20);}
+  // while(s_intakeLight.get_value_calibrated() > -4){pros::delay(20);}
 
   m_intake.move(0);
   pros::delay(movDel);
 
-  skidBase.moveDistance(-39_in);
+  skidBase.moveDistance(-43_in);
   pros::delay(movDel);
 
-  skidBase.turnAngle(-90_deg);
+  skidBase.moveDistance(3_in);
+  pros::delay(movDel);
+
+  skidBase.turnAngle(-101_deg);
   pros::delay(movDel);
 
   skidBase.moveDistance(10_in);
   pros::delay(movDel);
 
-  m_puncher.move_relative(-2700, 200);
-  pros::delay(500);
+  while(s_light.get_value_calibrated() > -200)
+  {
+    m_intake.move(127);
+  }
+  m_intake.move(0);
 
-  skidBase.moveDistance(16_in);
+  m_intake.move_relative(-1800,127);
+  pros::delay(1000);
+
+  m_puncher.move_relative(-3000, 200);
+  pros::delay(1300);
+
+  skidBase.moveDistance(20_in);
   pros::delay(movDel);
 
   skidBase.setMaxVelocity(100);
 
-  skidBase.turnAngle(10_deg);
-  pros::delay(movDel);
+  while(s_light.get_value_calibrated() > -200)
+  {
+    m_intake.move(127);
+  }
+  m_intake.move(0);
 
-  m_intake.move_relative(1800, 200);
+  m_puncher.move_relative(-3000, 200);
+  pros::delay(1300);
 
-  m_puncher.move_relative(-2700, 200);
-  pros::delay(500);
-
-  skidBase.turnAngle(-10_deg);
+  skidBase.turnAngle(-18_deg);
   pros::delay(movDel);
 
   skidBase.moveDistance(22_in);

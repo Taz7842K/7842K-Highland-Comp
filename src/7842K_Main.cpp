@@ -15,7 +15,7 @@ void initialize()
   pros::delay(500);
   s_intakeLight.calibrate();
   s_light.calibrate();
-  m_puncherAim.tare_position();                //calibrates while BALL IS IN THE PUNCHER
+  m_puncherAim.tare_position();
   pros::delay(500);
 }
 
@@ -38,7 +38,18 @@ void competition_initialize() {}
 //--------------Autonomous---------------------------------------------
 void autonomous()
 {
-  auto_0();
+  // if(s_autoSelect.get_value() < 819){auto_0();}
+  //
+  // else if(s_autoSelect.get_value()> 819 && s_autoSelect.get_value() < 1638){auto_1();}
+  //
+  // else if(s_autoSelect.get_value()> 1638 && s_autoSelect.get_value() < 2457){auto_2();}
+  //
+  // else if(s_autoSelect.get_value()> 2457 && s_autoSelect.get_value() < 3276){auto_3();}
+  //
+  // else if(s_autoSelect.get_value()> 3276 && s_autoSelect.get_value() < 4095){auto_4();}
+
+  auto_1();
+
 }
 //--------------Autonomous---------------------------------------------
 
@@ -47,7 +58,7 @@ void opcontrol()
 {
   while(true)
   {
-
+  std::cout << "autoselector value = " <<s_autoSelect.get_value()<<std::endl;
   std::cout << "distance calculated: " << distancefromflag << std::endl;
   std::cout << "medium angle :" << desianglemedium << std::endl;
   std::cout << "high angle: " << desianglehigh << std::endl;

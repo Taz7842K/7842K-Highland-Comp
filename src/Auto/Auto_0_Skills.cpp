@@ -23,17 +23,27 @@ void auto_0()
   skidBase.moveDistance(2_in);
   pros::delay(movDel);
 
-  skidBase.turnAngle(-94_deg);
+  skidBase.turnAngle(-100_deg);
   pros::delay(225);
 
   skidBase.moveDistance(51_in);
   pros::delay(movDel);
+
+
+  skidBase.setMaxVelocity(75);
+  pros::delay(100);
 
   skidBase.turnAngle(-13_deg);
   pros::delay(movDel);
 
   m_puncher.move_relative(-2700,200);
   pros::delay(2000);
+
+  while(s_light.get_value_calibrated() > -300)
+  {
+    m_intake.move(127);
+  }
+  m_intake.move(0);
 
   skidBase.moveDistance(23_in);
   pros::delay(movDel);
@@ -43,9 +53,6 @@ void auto_0()
     m_intake.move(127);
   }
   m_intake.move(0);
-
-  skidBase.setMaxVelocity(75);
-  pros::delay(100);
 
   m_puncher.move_relative(-2700,200);
   pros::delay(2000);

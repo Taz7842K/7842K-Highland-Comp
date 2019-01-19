@@ -16,12 +16,14 @@ pros::Motor m_puncherAim(15);
 
 pros::Motor m_intake(20);
 
+pros::Motor lift(9);
+
 pros::ADIUltrasonic s_ultrasonic1 ('A', 'B');
 pros::ADIUltrasonic s_ultrasonic2 ('G', 'H');
 
-pros::ADIPotentiometer s_puncherPot(5);
+pros::ADIPotentiometer s_autoSelect('C');
 
-pros::ADILineSensor s_light (6);
+pros::ADILineSensor s_light ('F');
 
 pros::ADILineSensor s_intakeLight ('E');
 

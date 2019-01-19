@@ -33,10 +33,13 @@ extern pros::Motor m_puncherAim;
 
 extern pros::Motor m_intake;
 
+extern pros::Motor lift;
+
 extern pros::ADIUltrasonic s_ultrasonic1;
 extern pros::ADIUltrasonic s_ultrasonic2;
 
-extern pros::ADIPotentiometer s_puncherPot;
+extern pros::ADIPotentiometer s_autoSelect;
+
 extern pros::ADIEncoder s_encoder;
 
 extern pros::ADILineSensor s_light;
@@ -47,7 +50,6 @@ void auto_1();
 void auto_2();
 void auto_3();
 void auto_4();
-void auto_5();
 
 extern double desianglehigh;
 extern double desianglemedium;

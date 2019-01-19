@@ -2,7 +2,7 @@
 #include "MainConfig.h"
 #include "Auto/AutoConfig.h"
 
-void auto_1()
+void auto_2()
 {
   skidBase.setMaxVelocity(movMaxVel);
   pros::delay(200);
@@ -10,9 +10,9 @@ void auto_1()
   m_intake.move(127);
 
   skidBase.moveDistance(40_in);
-  pros::delay(500);               //pause to intake ball
+  pros::delay(700);               //pause to intake ball
 
-  while(s_intakeLight.get_value_calibrated() > -4){pros::delay(20);}
+  // while(s_intakeLight.get_value_calibrated() > -4){pros::delay(20);}
 
   m_intake.move(0);
   pros::delay(movDel);

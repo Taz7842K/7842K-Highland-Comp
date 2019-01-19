@@ -36,12 +36,12 @@ void intakeTask()
 {
   if (HIDMain.get_digital(DIGITAL_L1))                            //intake
   {
-      m_intake.move(127);
+    m_intake.move(-127);
   }
 
   else if (HIDMain.get_digital(DIGITAL_L2))
   {
-    m_intake.move(-127);
+    m_intake.move(127);
   }
 
   else
@@ -65,5 +65,40 @@ double calcFlagDistance()
   else
   {
     return (s_ultrasonic1.get_value() + s_ultrasonic2.get_value()) /2;
+  }
+}
+
+void driverControlTask()
+{
+  if (HIDMain.get_digital(DIGITAL_R2))
+  {
+    m_puncherAim.move(-50);
+  }
+
+  else if (HIDMain.get_digital(DIGITAL_X))
+  {
+    m_puncherAim.move(50);
+  }
+
+  else if (HIDMain.get_digital(DIGITAL_R1))
+  {
+    m_puncher.move(-127);
+  }
+
+  else if (HIDMain.get_digital(DIGITAL_UP))
+  {
+    lift.move(-127);
+  }
+
+  else if (HIDMain.get_digital(DIGITAL_DOWN))
+  {
+    lift.move(127);
+  }
+  else
+  {
+
+    lift.move(0);
+    m_puncher.move(0);
+    m_puncherAim.move(-5);
   }
 }
