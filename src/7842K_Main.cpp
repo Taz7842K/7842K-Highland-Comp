@@ -48,7 +48,7 @@ void autonomous()
   //
   // else if(s_autoSelect.get_value()> 3276 && s_autoSelect.get_value() < 4095){auto_4();}
 
-  auto_1();
+  auto_2();
 
 }
 //--------------Autonomous---------------------------------------------

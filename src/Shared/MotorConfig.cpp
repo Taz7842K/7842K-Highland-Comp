@@ -29,7 +29,7 @@ pros::ADILineSensor s_intakeLight ('E');
 
 double movDel = 125;
 
-double movMaxVel = 100;
+double movMaxVel = 160;
 
 double enc_puncher;
 

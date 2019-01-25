@@ -10,20 +10,20 @@ void auto_2()
   m_intake.move(127);
 
   skidBase.moveDistance(40_in);
-  pros::delay(700);               //pause to intake ball
+  pros::delay(400);               //pause to intake ball
 
   // while(s_intakeLight.get_value_calibrated() > -4){pros::delay(20);}
 
   m_intake.move(0);
   pros::delay(movDel);
 
-  skidBase.moveDistance(-20_in);
+  skidBase.moveDistance(-2_in);
   pros::delay(movDel);
 
-  skidBase.turnAngle(90_deg);
+  skidBase.turnAngle(-90_deg);
   pros::delay(movDel);
 
-  skidBase.moveDistance(20_in);
+  skidBase.moveDistance(-33_in);
   pros::delay(movDel);
 
 }
